@@ -116,7 +116,7 @@ class App1 extends React.Component {
 
         })
     };
-    fetch('http://127.0.0.1:8000/pay/', requestOptions)
+    fetch('http://shiaam71.pythonanywhere.com/pay/', requestOptions)
         .then(response => response.json())
         .then(data => {window.checkout(this.state,data)});
   });      

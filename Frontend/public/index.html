@@ -78,7 +78,7 @@
                     
                     $.ajax({
                               type: "PATCH",
-                              url: "http://127.0.0.1:8000/pay/",
+                              url: "http://shiaam71.pythonanywhere.com/pay/",
                               contentType: "application/json",
                               data: JSON.stringify({'token': result.paymentHandleToken,'amount':result.amount},),
                               success: (data) =>{   
