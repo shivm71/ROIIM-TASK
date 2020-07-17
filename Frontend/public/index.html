@@ -45,11 +45,10 @@
   </body>
   <script type="text/javascript">
     function checkout(state,data) {
-      console.log(state)
-      console.log(typeof(state.amount))
+            console.log(state)
             paysafe.checkout.setup("cHVibGljLTc3NTE6Qi1xYTItMC01ZjAzMWNiZS0wLTMwMmQwMjE1MDA4OTBlZjI2MjI5NjU2M2FjY2QxY2I0YWFiNzkwMzIzZDJmZDU3MGQzMDIxNDUxMGJjZGFjZGFhNGYwM2Y1OTQ3N2VlZjEzZjJhZjVhZDEzZTMwNDQ=", {
                 "currency": "USD",
-                "amount": parseInt(state.amount),
+                "amount": parseInt(state.amount)*100,
                 "singleUseCustomerToken": data.token,
                 
                 "customer": {
@@ -78,7 +77,7 @@
                     
                     $.ajax({
                               type: "PATCH",
-                              url: "http://shiaam71.pythonanywhere.com/pay/",
+                              url: "https://shiaam71.pythonanywhere.com/pay/",
                               contentType: "application/json",
                               data: JSON.stringify({'token': result.paymentHandleToken,'amount':result.amount},),
                               success: (data) =>{   
@@ -91,6 +90,7 @@
                                 }
                                 else{
                                   instance.showFailureScreen("Payment was declined. Try again with the same or another payment method."); 
+                                  window.location.replace(window.location.origin);
                                 }
                               }
                             });
@@ -101,7 +101,10 @@
 
                 } else {
                   console.log("error");
-                    console.error(error);
+                  alert(error)
+                  console.error(error);
+                  window.location.replace(window.location.origin);
+                    
                     // Handle the error
                 }
             }, function(stage, expired) {
@@ -113,7 +116,6 @@
                     default: // Handle the scenario
                 }
             });
-        }
-        
+    }
   </script>
 </html>
